@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Boceto Web</title>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+    <div class="Menu2">
+      <ul class="list">
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/inicio_peque.png" class="list_img">
+            <a href="index.html" class="list_link">Inicio</a>
+          </div>
+        </li>
+        <li class="list_item">
+          <div class="list_button list_button--click">
+            <img src="imgs/bases_peque.png" class="list_img">
+            <a href="#" class="list_link">Fuente de Datos</a>
+          </div>
+          <ul class="list_show">
+            <li class="list_inside">
+              <a href="nuevafuente.html" class="list_link list_link--inside">Nueva Fuente</a>
+            </li>
+            <li class="list_inside">
+              <a href="editarfuente.html" class="list_link list_link--inside">Editar Fuente</a>
+            </li>
+          </ul>
+          
+        </li>
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/ajustes_peque.png" class="list_img">
+            <a href="ajustes.html" class="list_link">Ajustes</a>
+          </div>
+        </li>
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/salir_peque.png" class="list_img">
+            <a href="inicio.html" class="list_link">Salir</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="cont_header_user">
+      <h1>Perfil del Usuario</h1>
+      <button type="button" class="user_boton" id="bt_usuario"><img src="imgs/imagen usuario pequeña_Capa de pintura 2 (pegado) Fusionadas.png"></button>
+      <h4>Foto Usuario</h4>
+      <button class="sel_arch">Seleccionar archivo</button>
+    </div>
+    <div class="datos_user">
+      <ul class="lista_datos">
+        <div class="par_dato">
+          <li class="dato">Nombre y Apellidos</li>
+          <input type="text" placeholder="Mariano Rajoy">
+        </div>
+        <div class="par_dato">
+          <li class="dato">Usuario</li>
+          <input type="text" placeholder="M. Rajoy">
+        </div>
+        <div class="par_dato">
+          <li class="dato">Correo</li>
+          <input type="text" placeholder="correo@gmail.com">
+        </div>
+        <div class="par_dato">
+          <li class="dato">Contraseña</li>
+          <input type="text" placeholder="12345">
+        </div>
+        <div class="par_dato">
+          <li class="dato">Repetir Contraseña</li>
+          <input type="text" placeholder="12345">
+        </div> 
+        <button class="bt_user_guardar"><img src="svg/guardar.svg">Guardar</button>
+      </ul>
+    </div>
+    <script>
+        const usuario = document.getElementById('bt_usuario')
+
+        usuario.addEventListener('click', ()=>{
+          location.href = "usuario.html";
+        })
+    </script>
+
+    <script src="usuario.js"></script>
+
+  </body>
+</html>

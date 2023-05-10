@@ -1,0 +1,1557 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'sans-serif';
+    /*background-image: linear-gradient(rgba(255,255,255,1), rgba(145, 23, 122, 1));*/
+  }
+
+  /*puse una imagen de fondo para ver como se hacía, es mejor usar un gradiente*/
+  body{
+    background-image: url("imgs/imagen\ fondo.png");
+    background-size: 200% 200%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    /* height: 2000px; */
+  }
+
+  /*contenedor del form*/
+  .Menu {
+    width: 70%;
+    height: 150px;
+    margin-left: 300px;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .form{  /*contenedor de la barra de busqueda y los dos botones*/
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .search_bar{
+    margin-left: 250px;
+    margin-top: 0px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    width: 50%;
+
+    font-size: 16px;
+  }
+
+  .search_bar_users{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    width: 50%;
+    height: 25%;
+    font-size: 16px;
+  }
+
+  .search_button{
+    width: 60px;
+    height: 60px;
+    background-color: rgba(159, 71, 143, 0.6);
+    color: #303440;
+    border-radius: 60px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .search_button img{
+    width: 30px;
+    height: 30px;
+  }
+
+  .search_button_users{
+    width: 40px;
+    height: 40px;
+    background-color: rgba(159, 71, 143, 0.6);
+    color: #303440;
+    border-radius: 60px;
+    margin-left: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .user_boton{
+    width: 69px;
+    height: 69px;
+    background-color: aliceblue;
+    border: none;
+    cursor: pointer;
+    margin-left: 150px;
+    border-radius: 60px;
+  }
+
+  .user_boton img{
+    width: 70px;
+    height: 70px;
+  }
+
+  .Menu2{ /*fondo menú vertical*/
+    float: left;
+    width: 300px;
+    height: 100%;
+    top: 0;
+    /*background: #605f5f;*/
+    color: rgb(255, 255, 255);
+    z-index: 1;
+    position: fixed;
+  }
+
+  .list{ /*<ul>*/
+    width: 100%;
+    height: 100vh;
+    font-size: 18px;
+    /*padding-left: 50px;*/
+    line-height: 4;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    border: 0 16px 16px 0;
+    background: #605f5f;
+  }
+
+  .list_item{  /*<li>*/
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .list_item--click{
+    cursor: pointer;
+  }
+
+  .list_button{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 70%;
+    margin: 0 auto;
+    
+  }
+
+
+  .list_link{
+    color:rgb(255, 255, 255);
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;  
+  }
+
+  .list_link--inside:hover{
+    background: rgba(145, 23, 122, 0.3);
+    
+  }
+
+  .list img{
+    height: 50px;
+    width: 50px;
+  }
+
+  .list_show{
+    width: 80%;
+    margin-left: auto;
+    border-left: 2px solid #303440;
+    list-style: none;
+    transition: height 4.s;
+    height: 0;
+  }
+
+  /*contenedor de las gráficas*/
+  .chartCard {
+    float: left;
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 20px;
+  }
+
+  .chartCard2 {
+    float: left;
+    margin-left: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 20px;
+  }
+
+  .botones{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: 300px;
+    padding-top: 20px;
+  }
+
+  .botones text{
+    padding-top: 50px;
+    font-size: 16px;
+  }
+
+  .botones button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .bt_izq{
+    width:80px;
+  }
+  /*boton ajustes de los paneles*/
+  .bt_aj{
+    width: 80px;
+  }
+  /*boton filtros de los paneles*/
+  .bt_filtros{
+    width: 200px;
+  }
+  /*contenedor de los gráficos*/
+  .cuadros{
+    float: left;
+    padding-left: 300px;
+  }
+  /*el recuadro gris con borde morado en los gráficos*/
+  .chartBox {
+    width: 385px;
+    max-width: 385px;
+    height: 580px;
+    max-height: 650px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: solid 3px rgb(190, 37, 207);
+    background: rgb(130, 124, 124);
+    padding: 10px;
+  }
+
+  .chartBox img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  /*contenedor de los canvas en los cuadros de mando*/
+  .paneles{
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    margin-left: 350px;
+  }
+
+  .panel{
+    cursor: pointer;
+  }
+
+  .lista_paneles{
+    list-style: none;
+  }
+
+  .item_paneles{
+    font-size: 20px;
+  }
+
+  /*Botón Añadir Panel*/
+
+  .boton{
+    margin-top: 450px;
+  }
+
+  .boton_add{
+    margin-left: 550px;
+    margin-top: 450px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+
+  }
+
+  .boton_add img{
+    width: 200px;
+  }
+
+  /*estilo del inicio de sesion*/
+  .contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 75px; 
+    position: relative;
+    z-index: 2;
+  }
+
+  video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .capa{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: 'black';
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+  }
+
+  .chartBoxIntro {
+    width: 385px;
+    max-width: 385px;
+    height: 580px;
+    max-height: 650px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 20px;
+    border: solid 3px rgb(190, 37, 207);
+    background: rgb(130, 124, 124);
+  }
+
+  .intro{
+    border-radius: 60px;
+    width: 120px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    background-color: blueviolet;
+  }
+
+  .intro a{
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  .input_inicio{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .contenedor h1{
+    color: aliceblue;
+  }
+
+  /*estilo de los ajustes*/
+  .cont_ajustes{
+    padding: 0 auto;
+    margin: 50px;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 6;
+  }
+
+  .aj{
+    margin-left: 50px;
+    margin-top: 30px;
+    background-color: rgba(130, 124, 124, 0.5);
+    color: aliceblue;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .crear_user{
+    margin-left: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(159, 71, 143, 0.6);
+    border: none;
+    color:aliceblue;
+    padding: 10px;
+  }
+
+  .users{
+    margin-left: 33px;
+    margin-top: 10px;
+    width: 250px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .users img{
+    width: 250px;
+    height: 150px;
+  }
+
+  .cont_usuarios{
+    display: flex;
+    justify-content: left;
+    align-content: center;
+  }
+
+  .cont_roles{
+    display: flex;
+    justify-content: left;
+    align-content: center;
+  }
+
+  .rol{
+    margin-left: 33px;
+    margin-top: 10px;
+    width: 250px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .rol img{
+    width: 250px;
+    height: 150px;
+  }
+
+  .modelos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .botones_modelos{
+    margin-top: 15px;
+  }
+
+  .bt_modelos{
+    height: 50px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+  .cabecera_correo{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+  }
+
+  .cabecera_correo input{
+    width: 250px;
+  }
+
+  .tls_correo{
+    margin-left: 26px;
+  }
+
+  .bt_correo{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 500px
+  }
+
+  .bt_correo button{
+    height: 50px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+  .bt_guardar_correo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bandeja{
+    display: flex;
+    justify-content: space-evenly;
+    gap:650px;
+  }
+
+  .bandeja_estilo{
+    width: 500px;
+  }
+
+  .tabla_correo{
+    display: flex;
+    gap: 25px;
+  }
+
+  /*menú ajustes paneles*/
+  .lista_ajustes_panel{
+    top: 0px;
+    right: 0px;
+    width: 20vw;
+    height: 100%;
+    font-size: 18px;
+    line-height: 4;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    border: 0 16px 16px 0;
+    background: #2f2e2e;
+    z-index: 2;
+    position: fixed;
+    transition: transform .3s ease-in-out;
+    transform: translate(110%);
+  }
+
+  .spread{
+    transform: translate(0);
+  }
+/* 
+  :hover .lista_ajustes_panel{
+    transform: translate(110%);
+  } */
+
+  .close{
+    margin-left: 270px;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+  .ajuste_panel{
+    list-style: none;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    margin-left: 50px;
+  }
+
+  .item_ajuste{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    gap: 1em;
+    width: 70%;
+    /* margin: 0 auto; */
+  }
+
+  .link_lista-aj{
+    color:rgb(255, 255, 255);
+    display: block;
+    text-decoration: none; 
+  }
+
+  /*estilo de el recuadro de los indicadores*/
+  .indicadores_cont{
+    position: fixed;
+    z-index: 10;
+    margin-left: 400px;
+    margin-top: -130px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .tipo_ind_cont{
+    position: fixed;
+    z-index: 10;
+    margin-left: 400px;
+    margin-top: -130px;
+    display: none;
+    padding: 10px;
+  }
+
+  .ventana_indicadores{
+    width: 700px;
+    height: 540px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background: #2f2e2e;
+    color: aliceblue;
+    padding: 10px;
+  }
+
+
+  .header_indicadores{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #2f2e2e;
+    padding-top: 10px;
+  }
+
+  .header_indicadores button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .estilo_indicadores{
+    margin-left: 35px;
+  }
+
+  .estilo_indicadores h3{
+    padding-top: 20px;
+  }
+
+  .estilo_ind_inside{
+    margin-top: 10px;
+    margin-left: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .item_estilo_ind{
+    margin-left: 50px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tipo_indicador{
+    height: 40px;
+    width: 600px;
+    padding-left: 10px;
+  }
+
+  .lista_indicadores_cont{
+    padding: 10px;
+  }
+
+  .lista_indicadores{
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: aliceblue;
+    color: red;
+    padding: 10px;
+  }
+
+  .botones_ind{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .reglas_ind{
+    height: 200px;
+    width: 600px;
+    background: aliceblue;
+    padding: 10px;
+  }
+
+  .bt_ind{
+    height: 30px;
+    width: 100px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+  }
+
+  .cerrar_ind{
+    height: 30px;
+    width: 60px;
+    margin-top: 20px;
+    margin-left: 300px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+  }
+
+  .cerrar_ind_2{
+    height: 30px;
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .anterior{
+    height: 30px;
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .botones_ind button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bt_ind_guardar{
+    height: 30px;
+    width: 90px;
+    padding-left: 5px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+  }
+
+  .bt_panel_guardar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 90px;
+    padding-left: 5px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+  }
+
+  .bt_user_guardar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 33px;
+    height: 30px;
+    width: 90px;
+    padding-left: 5px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+  }
+  
+  /*estilo del horno en 3D*/
+  .contwebgl{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 1500px;
+    height: 950px;
+    margin-left: 300px;
+    margin-top: -200px;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+  }
+
+  .contwebgl div{
+    height: 300px;
+    width: -1000px;
+    color: black;
+    z-index: 10;
+    position: fixed;
+  }
+
+  .webglcanvas{
+    border: 1px black;
+    border-radius: 10px;
+    z-index: 10;
+    margin-top: 150px;
+    margin-left: -300px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .close_model{
+    margin-left: 340px;
+    margin-top: -440px;
+    width: 30px;
+    height: 30px;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+  /*estilo recuadro de añadir nuevo cuadro de mando*/
+  .cont_nuevo_cuadro{
+    display: none;
+    position: fixed;
+    margin-left: 600px;
+    margin-top: 50px;
+  }
+
+  .opciones_nuevo_cuadro{
+    background-color: #2f2e2e;
+    color: aliceblue;
+    padding: 20px;
+  }
+
+  .botones_cuadro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px
+  }
+
+  /*estilo de el recuadro de añadir panel a un cuadro de mando*/
+  .nuevo_panel_cont{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 1300px;
+    height: 950px;
+    margin-left: 300px;
+    margin-top: -100px;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+  }
+
+  .opciones_nuevo_cuadro{
+    border-radius: 10px;
+    height: 300px;
+  }
+
+  .nuevo_panel{
+    background-color: #2f2e2e;
+    width: 800px;
+    height: 500px;
+    color: aliceblue;
+    padding: 20px;
+    gap: 10px;
+    border-radius: 10px;
+    margin-left: -280px;
+    margin-top: 70px;
+  }
+
+  .tipo_panel a{
+    text-decoration: none;
+    color: aliceblue;
+  }
+
+  .tipo_panel > li{
+    display: block;
+    padding: 15px 20px;
+  }
+
+  .tipo_panel > li:hover{
+    background-color: blueviolet;
+  }
+
+  .menu-vertical{
+    position: absolute;
+    display: none;
+    list-style: none;
+    background-color: rgba(0,0,0,0.5);
+    margin-top: 10px;
+  }
+
+  .tipo_panel li:hover .menu-vertical{
+    display: block;
+  }
+
+  .botones_cuadro{
+    margin-top: 70px;
+  }
+
+  /*estilo de el recuadro de añadir filtros*/
+  .cont_filtros{
+    position: fixed;
+    display: none;
+    top: 0;left: 0;
+    width: 1600px;
+    height: 1200px;
+    background-color: rgba(0,0,0,0.2);
+    color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 20;
+  }
+
+  .filtros{
+    justify-content: space-evenly;
+    width: 400px;
+    height: 300px;
+    background-color: #2f2e2e;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 40px;
+    margin-left: 650px;
+    margin-top: 200px;
+    row-gap: 50px;
+  }
+
+  .bt_guardar_filtro{
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    margin-left: 120px;
+    margin-top: 50px;
+    border-radius: 10px;
+    height: 60px;
+    width: 80px;
+    font-size: 20px;
+    border: none;
+    position: fixed;
+  }
+
+  .aplica{
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .aplica button{
+    height: 30px;
+    width: 30px;
+    background-color: blueviolet;
+    color: aliceblue;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .panel_aplica{
+    margin-top: 20px;
+  }
+
+  .panel_aplica button{
+    height: 50px;
+    width: 50px;
+    background-color: blueviolet;
+    color: aliceblue;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    gap: 20px;
+    margin-top: 10px;
+    margin-left: 50px;
+  }
+
+  .fecha{
+    margin-top: 5px;
+    margin-left: 100px;
+  }
+
+  /*segunda parte de añadir nuevo panel, añadir sentencias SQL y demás*/
+  .nombre_panel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px
+  }
+
+  .consulta_SQL{
+    display: flex;
+  }
+
+  .añadirTabla{
+    margin-left: 100px;
+  }
+
+  .añadirTabla h6{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .sql{
+    width: 350px;
+    height: 300px;
+  }
+
+  .cabeceraSQL{
+    display: flex;
+  }
+
+  .cabeceraSQL button{
+    margin-left: 500px;
+  }
+
+  .botones_panel{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .cont_asist{
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .AsistidoSQL{
+    display: flex;
+    gap: 550px;
+  }
+
+  .asistido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .horno{
+    width: 250px;
+    height: 250px;
+  }
+
+  /*estilo menú usuario*/
+  .cont_header_user{
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cont_header_user h1{
+    padding-left: 150px;
+    padding-top: 20px;
+  }
+
+  .cont_header_user h4{
+    padding-left: 150px;
+    padding-top: 10px;
+  }
+
+  .sel_arch{
+    margin-top: 10px;
+    margin-left: 150px;
+  }
+
+  .datos_user{
+    height: 500px;
+    width: 400px;
+    margin-left: 700px;
+    margin-top: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #605f5f;
+  }
+
+  .lista_datos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+    list-style: none;
+    margin-left: 0px;
+    color:rgb(255, 255, 255)
+  }
+
+  /* .par_dato{
+    display: flex;
+    justify-content: space-evenly;
+    gap:50px;
+  } */
+
+  /*estilo de la información que aparece dentro del modelo 3D*/
+  .webgl_info1 {
+    width: 150px;
+    max-width: 200px;
+    height: 100px;
+    max-height: 150px;
+    margin-top: 100px;
+    float: left;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 20px; */
+    border-radius: 20px;
+    border: solid 3px rgb(190, 37, 207);
+    background: rgb(130, 124, 124);
+  }
+
+  .webgl_info1 h3{
+    color: aliceblue;
+    margin: 20px;
+    font-size: 16px;
+  }
+
+  .webgl_info2 {
+    width: 150px;
+    max-width: 200px;
+    height: 100px;
+    max-height: 150px;
+    margin-top: -200px;
+    margin-left: -600px;
+    float: left;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 20px; */
+    border-radius: 20px;
+    border: solid 3px rgb(190, 37, 207);
+    background: rgb(130, 124, 124);
+  }
+
+  .webgl_info2 h3{
+    color: aliceblue;
+    margin: 20px;
+    font-size: 16px;
+  }
+
+  .bt_webgl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 33px;
+    margin-top: 600px;
+    height: 30px;
+    width: 90px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    z-index: 10;
+    position: fixed;
+  }
+
+  .bt_webgl2{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-left: 33px;
+    margin-top: 600px;
+    height: 30px;
+    width: 90px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    z-index: 10;
+    position: fixed;
+  }
+
+  /*estilo pantalla de crear nueva fuente de datos*/
+  .bt_guardar_fuente{
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    margin-left: 890px;
+    margin-top: 50px;
+    border-radius: 10px;
+    height: 60px;
+    width: 80px;
+    font-size: 20px;
+    border: none;
+  }
+
+  .nueva_fuente_cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 630px;
+    row-gap: 20px;
+    background-color: #605f5f;
+    padding: 20px;
+    width: 600px;
+    border-radius: 10px;
+    color: aliceblue;
+  }
+
+  .fuente_header{
+    display: flex;
+    gap: 80px;
+  }
+
+  .par_config{
+    display: flex;
+    gap: 80px;
+  }
+
+  .cont_edit_fuente{
+    display: flex;
+  }
+
+  .model_box{
+    width: 300px;
+    margin-left: 450px;
+    border-radius: 20px;
+    border: solid 3px rgb(190, 37, 207);
+    background: rgb(130, 124, 124);
+    color: aliceblue;
+    padding: 10px;
+  }
+
+  .iconos_model{
+    cursor: pointer;
+  }
+
+  .edit_box{
+    width: 600px;
+    margin-left: 50px;
+    border-radius: 20px;
+    border: solid 3px rgb(190, 37, 207);
+    background: rgb(130, 124, 124);
+    color: aliceblue;
+    padding: 10px;
+  }
+
+  .edit_box button{
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    height: 30px;
+    width: 120px;
+    padding-left: 5px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    font-size: 10px;
+  }
+
+  .edit_box input{
+    width: 300px;
+  }
+
+  .bt_ext{
+    display: flex;
+    gap: 10px;
+  }
+
+  .sqlLogo{
+    height: 100px;
+    height: 100px;
+    position: fixed;
+    margin-left: 400px;
+    margin-top: 50px;
+  }
+
+  .infi{
+    display: flex;
+  }
+
+  /*editar estilo panel*/
+  .cont_estilo{
+    position: fixed;
+    display: none;
+    top: 0;left: 0;
+    width: 1600px;
+    height: 1200px;
+    background-color: rgba(0,0,0,0.2);
+    color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 20;
+  }
+  
+  .estilo{
+    width: 1050px;
+    height: 500px;
+    margin-left: 300px;
+    margin-top: 50px;
+    background-color: #2f2e2e;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .cabecera_estilo{
+    display: flex;
+    gap: 20px;
+  }
+
+  .bt_radio{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .opciones_estilo_cont{
+    display: flex;
+    gap: 10px;
+  }
+
+  .opcion_estilo{
+    background-color: #605f5f;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    row-gap: 10px;
+  }
+
+  .opcion_estilo img{
+    width: 250px;
+    height: 250px;
+  }
+
+  .botones_estilo{
+    margin-top: 25px;
+    margin-left: 500px;
+    color: aliceblue;
+  }
+
+  .botones_estilo button{
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    border-radius: 10px;
+    /* height: 60px;*/
+    font-size: 20px;
+    border: none;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .aux{
+    display: flex;
+    gap: 5px;
+  }
+
+  /*Crear usuario*/
+  .nuevo_user_cont{
+    display: none;
+    top: 0;
+    left: 0;
+    height: 570px;
+    width: 680px;
+    z-index: 20;
+    position: fixed;
+    margin-left: 400px;
+  }
+
+  .nuevo_user{
+    background-color: #2f2e2e;
+    margin-top: 200px;
+    margin-left: 300px;
+    padding: 10px;
+    color: aliceblue;
+    border-radius: 10px;
+  }
+
+  .par_partes{
+    list-style: none;
+    margin-left: 112px;
+  }
+
+  .guardar_user{
+    height: 40px;
+    width: 60px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 150px;
+  }
+
+  /*crear rol*/
+  .roles_cont{
+    display: none;
+    top: 0;
+    left: 0;
+    height: 570px;
+    width: 680px;
+    z-index: 20;
+    position: fixed;
+    margin-left: 400px;
+  }
+
+  .nuevo_rol{
+    background-color: #2f2e2e;
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 200px;
+    margin-left: 300px;
+  }
+
+  .header_rol{
+    display: flex;
+    gap: 20px;
+  }
+
+  .header_rol input{
+    width: 250px;
+  }
+
+  /*contenedor de añadir vista en editar fuente*/
+  .add_vista_cont{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 1500px;
+    height: 950px;
+    margin-left: 300px;
+    margin-top: -200px;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+  }
+
+  .add_vista{
+    width: 500px;
+    height: 400px;
+    margin-top: 200px;
+    margin-left: -200px;
+    background-color: #2f2e2e;
+    border-radius: 10px;
+    padding: 10px;
+    color: aliceblue;
+  }
+
+  .vista_input{
+    height: 100px;
+    width: 400px;
+  }
+
+  .add_vista button{
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+  .vista_buttons{
+    margin-top: 25px;
+    margin-left: 270px;
+  }
+
+  /*contenedor de añadir tabla en editar fuente*/
+  .add_tabla_cont{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 1500px;
+    height: 950px;
+    margin-left: 300px;
+    margin-top: -200px;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+  }
+
+  .add_tabla{
+    width: 650px;
+    height: 400px;
+    margin-top: 200px;
+    margin-left: -250px;
+    background-color: #2f2e2e;
+    border-radius: 10px;
+    padding: 10px;
+    color: aliceblue;
+  }
+
+  .elem_tabla{
+    display: flex;
+  }
+
+  .tabla_inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .tablon{
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+    margin-left: 30px;
+  }
+
+  .tablon h3{
+    background-color: #605f5f;
+    padding: 5px;
+    height: 30px;
+  }
+
+  .add_tabla h3{
+    margin-top: 10px;
+  }
+
+  .bt_upload{
+    border-radius: 60px;
+    border: none;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    color: aliceblue;
+  }
+
+  .add_tabla button{
+    border: none;
+    background-image: linear-gradient(to left, purple, blue);
+    cursor: pointer;
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .tabla_buttons{
+    margin-top: 150px;
+    margin-left: 450px;
+    display: flex;
+    gap: 10px;  
+    height: 50px;
+    padding: 5px;
+  }

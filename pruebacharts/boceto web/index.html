@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Boceto Web</title>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+  <body>
+    <div class="Menu2">
+      <ul class="list">
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/inicio_peque.png" class="list_img">
+            <a href="index.html" class="list_link">Inicio</a>
+          </div>
+        </li>
+        <li class="list_item">
+          <div class="list_button list_button--click">
+            <img src="imgs/bases_peque.png" class="list_img">
+            <a href="#" class="list_link">Fuente de Datos</a>
+          </div>
+          <ul class="list_show">
+            <li class="list_inside">
+              <a href="nuevafuente.html" class="list_link list_link--inside">Nueva Fuente</a>
+            </li>
+            <li class="list_inside">
+              <a href="editarfuente.html" class="list_link list_link--inside">Editar Fuente</a>
+            </li>
+          </ul>
+          
+        </li>
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/ajustes_peque.png" class="list_img">
+            <a href="ajustes.html" class="list_link">Ajustes</a>
+          </div>
+        </li>
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/salir_peque.png" class="list_img">
+            <a href="inicio.html" class="list_link">Salir</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="Menu">
+      <div class="form">
+        <input type="text" placeholder="Buscar cuadro de mando" class="search_bar">
+        <button type="submit" class="search_button"><img src="svg/lupa.svg"></button>
+        <button type="button" class="user_boton" id="bt_usuario"><img src="imgs/imagen usuario pequeña_Capa de pintura 2 (pegado) Fusionadas.png"></button>
+      </div>
+    </div>
+    <div class="paneles">
+      <ul class="lista_paneles">
+        <li class="item_paneles">FAVORITOS</li>
+        <canvas class="panel" id="panel"></canvas>
+        <li class="item_paneles">PÚBLICOS</li>
+        <canvas class="panel" id="panel_pu"></canvas>
+        <li class="item_paneles">PRIVADOS</li>
+        <!-- <canvas id="priv"></canvas> -->
+        <li class="item_paneles">POR ROLES</li>
+      </ul>
+    </div>
+
+    <button class="boton_add" id="boton_add"><img src="imgs/pantalla  marcos_brillo boton Fusionadas.png"></button>
+
+    <div class="cont_nuevo_cuadro" id="cont_nuevo_cuadro">
+      <div class="opciones_nuevo_cuadro">
+        <h1>CREA UN NUEVO CUADRO DE MANDOS</h1>
+        <div class="atributos_cuadro">
+          <h3>Nombre: </h3>
+          <input type="text">
+          <h3>Origen Datos: </h3>
+          <input type="text">
+          <ul class="tipo_panel">
+            <li>
+              <a href="#">Tipo de Informe:</a>
+              <ul class="menu-vertical">
+                <li><a href="#">ROL</a></li>
+                <li><a href="#">PÚBLICOS</a></li>
+                <li><a href="#">PRIVADOS</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="botones_cuadro">
+          <button class="cerrar_ind_2" id="cerrar_ind_2">Cerrar</button> 
+          <button class="bt_ind_guardar" id="cerrar_ind_2"><img src="svg/guardar.svg">Guardar</button> 
+        </div>
+      </div>
+    </div>
+    
+    <script src="main.js"></script>
+
+  </body>
+</html>

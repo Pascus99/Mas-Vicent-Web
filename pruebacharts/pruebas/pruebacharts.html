@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prueba Chartjs</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(54, 162, 235, 1);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: rgba(54, 162, 235, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 500px;
+        float: left;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgb(190, 37, 207);
+        background: rgb(130, 124, 124);
+      }
+
+      .darkMode{
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!--<div class="chartMenu">
+      <p>PRUEBA CHART JS<span id="chartVersion"></span>)</p>
+    </div>>-->
+    <div class="chartBox" id="backgroundColorChart">
+        <canvas id="myChart"></canvas>
+        <canvas id="chart2"></canvas>
+        <canvas id="graflineas"></canvas>
+    </div>
+
+    <div class="chartBox" id="otroFondo">
+      <canvas id="grafhorizontal"></canvas>
+      <canvas id="grafhorizontal2"></canvas>
+      <canvas id="barrasArriba"></canvas>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script>
+    // setup 
+
+    //grafico de barras gradiente
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var barGradient = ctx.createLinearGradient(0, 0, 0, 350);
+    
+    barGradient.addColorStop(0.2, 'purple');
+    barGradient.addColorStop(1, 'red');
+
+    
+    const data = {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: 'Weekly Sales',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: barGradient
+        }],
+        label: 'Line Sales',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor:'rgba(54, 162, 235, 1)', //azul
+        borderColor:'rgba(255, 26, 104, 1)',
+        tension: 0.4,
+        type: 'line',
+
+    };
+
+    //plugin vertical gradient f
+    const verticalGradientBg = {
+        id: 'verticalGradientBg',
+        beforeDraw(chart, args, plugins){
+            const {ctx, chartArea: {top, bottom, left, right, width, height}} = chart;
+
+            ctx.save();
+
+            const gradientBg = ctx.createLinearGradient(0,top,0,height)
+            gradientBg.addColorStop(0, 'rgba(0, 0, 0, 0.1)')
+            gradientBg.addColorStop(1, 'rgba(0, 0, 0, 1)');
+
+            ctx.fillStyle = gradientBg
+            ctx.fillRect(left, top, width, height);
+        }
+    }
+
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        legend: {
+            labels: {
+                fontColor: "white",
+                fontSize: 18
+            }
+        },
+        scales: {
+          x: {stacked: true},
+          y: {
+            beginAtZero: true,
+            stacked: true
+          }
+        }
+      },
+      plugins: [verticalGradientBg]
+        
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    const x = myChart.config.options.scales.x;
+    const y = myChart.config.options.scales.y;
+    const bgColorChart = document.getElementById('backgroundColorChart');
+
+    
+    bgColorChart.style.backgroundColor = 'rgba(103,93,105,0.6)';
+    x.grid.borderColor = 'white';
+    y.grid.borderColor = 'white';
+    x.grid.color = 'rgba(255,255,255,0)';
+    y.grid.color = 'rgba(255,255,255,0.5)';
+    Chart.defaults.color = 'white'
+
+    </script>
+
+    <script src = "pruebacharts.js"></script>
+
+  </body>
+</html>

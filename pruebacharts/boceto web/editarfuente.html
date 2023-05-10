@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Boceto Web</title>
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+
+  <body>
+        <div class="Menu">
+            <div class="form">
+                <button type="button" class="user_boton" id="bt_usuario"><img src="imgs/imagen usuario pequeña_Capa de pintura 2 (pegado) Fusionadas.png"></button>
+            </div>
+        </div>
+        <div class="Menu2">
+            <ul class="list">
+                <li class="list_item">
+                    <div class="list_button">
+                        <img src="imgs/inicio_peque.png" class="list_img">
+                        <a href="index.html" class="list_link">Inicio</a>
+                    </div>
+                </li>
+                <li class="list_item">
+                    <div class="list_button list_button--click">
+                        <img src="imgs/bases_peque.png" class="list_img">
+                        <a href="#" class="list_link">Fuente de Datos</a>
+                    </div>
+                    <ul class="list_show">
+                        <li class="list_inside">
+                            <a href="nuevafuente.html" class="list_link list_link--inside">Nueva Fuente</a>
+                        </li>
+                        <li class="list_inside">
+                            <a href="editarfuente.html" class="list_link list_link--inside">Editar Fuente</a>
+                        </li>
+                    </ul>
+                
+                </li>
+                <li class="list_item">
+                    <div class="list_button">
+                        <img src="imgs/ajustes_peque.png" class="list_img">
+                        <a href="ajustes.html" class="list_link">Ajustes</a>
+                    </div>
+                </li>
+                <li class="list_item">
+                    <div class="list_button">
+                        <img src="imgs/salir_peque.png" class="list_img">
+                        <a href="inicio.html" class="list_link">Salir</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="cont_edit_fuente">
+            <div class="model">
+                <div class="model_box">
+                    <h3>Modelos de datos</h3>
+                    <div class="iconos_model">
+                        <img src="svg/recargar.svg">
+                        <img src="svg/guardar.svg">
+                        <img src="svg/data.svg">
+                        <img src="svg/basura.svg">
+                    </div>
+                </div>
+                <section>e</section>
+                <div class="model_box">
+                    <h3 class="infi"><img src="svg/net.svg">Infinisens</h3>
+                </div>
+        
+            </div>
+            <div class="edit">
+                <img src="imgs/MySQL-logo.png" class="sqlLogo">
+                <div class="edit_box">
+                    <h2>Editar Infinisens</h2>
+                    <h3>Metadata</h3>
+                    <div class="name_box">
+                        <h4>Nombre</h4>
+                        <input type="text" placeholder="Infinisens">
+                    </div>
+                    <h3>Conexión</h3>
+                    <div class="conec">
+                        <div class="par_conec">
+                            <h4>Tipo</h4>
+                            <input type="text" placeholder="MySQL">
+                        </div>
+                        <div class="par_conec">
+                            <h4>Host</h4>
+                            <input type="text" placeholder="tikblue.ddns.net">
+                        </div>
+                        <div class="par_conec">
+                            <h4>Puerto</h4>
+                            <input type="text" placeholder="3334">
+                        </div>
+                        <div class="par_conec">
+                            <h4>Base de datos</h4>
+                            <input type="text" placeholder="masvillareal">
+                        </div>
+                        <div class="par_conec">
+                            <h4>Esquema</h4>
+                            <input type="text">
+                        </div>
+                        <div class="par_conec">
+                            <h4>Usuario</h4>
+                            <input type="text" placeholder="root">
+                        </div>
+                        <div class="par_conec">
+                            <h4>Password</h4>
+                            <input type="text" placeholder="Default">
+                        </div>
+                        <div class="par_conec">
+                            <h4>Filtros</h4>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <h3>Extender el modelo</h3>
+                    <div class="bt_ext">
+                        <button id="bt_add_vista"><img src="svg/añadir.svg">Añadir vista</button>
+                        <button id="bt_add_tabla"><img src="svg/añadir.svg">Añadir tabla desde csv</button>
+                    </div>
+                    <h3>Utilidades</h3>
+                    <div class="bt_ext">
+                        <button><img src="svg/oculto.svg">Ocultar todas las tablas</button>
+                        <button><img src="svg/oculto.svg">Ocultar todas las relaciones</button>
+                        <button><img src="svg/ajustes.svg">Configurar Caché</button>
+                        <button><img src="svg/seguridad.svg">Ver configuración de seguridad</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="add_vista_cont" id="add_vista_cont">
+            <div class="add_vista">
+                <h1>Añadir Vista</h1>
+                <h3>Nombre</h3>
+                <input type="text">
+                <h3>Descripción</h3>
+                <input type="text">
+                <h3>Nombre técnico</h3>
+                <input type="text">
+                <h3>Expresión SQL</h3>
+                <input type="text" class="vista_input">
+                <button>Generar vista</button>
+                <div class="vista_buttons">
+                    <button>Confirmar</button>
+                    <button id="cerrar_vista">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="add_tabla_cont" id="add_tabla_cont">
+            <div class="add_tabla">
+                <h1>Añadir Tabla</h1>
+                <div class="elem_tabla">
+                    <div class="tabla_inputs">
+                        <input type="text" placeholder="Nombre de la tabla">
+                        <input type="text" placeholder="Separador">
+                    </div>
+                    <div class="tablon">
+                        <h3>Campo</h3>
+                        <h3>Tipo</h3>
+                        <h3>Formato</h3>
+                        <h3>Separador decimal</h3>
+                    </div>
+                </div>
+                <h3>Subir archivo</h3>
+                <button class="bt_upload"><img src="svg/subir.svg"></button>
+                <div class="tabla_buttons">
+                    <button>Generar tabla</button>
+                    <button id="cierra_tabla">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            let listElements = document.querySelectorAll('.list_button--click');
+
+            listElements.forEach(listElement =>{
+            listElement.addEventListener('click', ()=>{
+        
+            //listElement.classList.toggle('arrow')
+
+                    let height = 0;
+                    let menu = listElement.nextElementSibling;
+                    console.log(menu.scrollHeight);
+                    if(menu.clientHeight == '0'){
+                        height = menu.scrollHeight
+                    }
+
+                    menu.style.height = `${height}px`;
+                })
+            });
+
+            const bt_add_vista = document.getElementById('bt_add_vista')
+            const vista_cont = document.getElementById('add_vista_cont')
+            const cerrar_vista = document.getElementById('cerrar_vista')
+
+            bt_add_vista.addEventListener('click', ()=>{
+                vista_cont.style.display = 'flex'
+            })
+
+            cerrar_vista.addEventListener('click', ()=>{
+                vista_cont.style.display = 'none'
+            })
+
+            const usuario = document.getElementById('bt_usuario')
+
+            usuario.addEventListener('click', ()=>{
+            location.href = "usuario.html";
+            })
+
+            const add_tabla = document.getElementById('bt_add_tabla')
+            const cierra_tabla = document.getElementById('cierra_tabla')
+            const add_tabla_cont = document.getElementById('add_tabla_cont')
+
+            add_tabla.addEventListener('click', ()=>{
+                add_tabla_cont.style.display = 'flex'
+            })
+
+            cierra_tabla.addEventListener('click', ()=>{
+                add_tabla_cont.style.display = 'none'
+            })
+        </script>
+  </body>

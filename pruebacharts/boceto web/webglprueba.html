@@ -1,0 +1,505 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Boceto Web</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script id="myVertexShader" 
+          type="x-shader/x-vertex">#version 300 es
+        
+      uniform mat4 projectionMatrix;
+      uniform mat4 modelViewMatrix;
+      uniform mat3 normalMatrix;
+        
+      in vec3 VertexPosition;
+      in vec3 VertexNormal;
+      in vec2 VertexTexcoords;
+        
+      out vec3 N, ec;
+      out vec2 texCoords;
+        
+      void main()  {
+          
+        N               = normalize(normalMatrix * VertexNormal);
+        vec4 ecPosition = modelViewMatrix * vec4(VertexPosition,1.0);
+        ec              = vec3(ecPosition);
+          
+        gl_Position     = projectionMatrix * ecPosition;
+        texCoords       = VertexTexcoords;
+        
+      }
+      
+    </script>
+      
+    <script id="myFragmentShader" 
+          type="x-shader/x-fragment">#version 300 es
+        
+      precision mediump float;
+      
+      struct LightData {
+        vec3 Position; // Posición en coordenadas del ojo
+        vec3 La;       // Ambiente
+        vec3 Ld;       // Difusa
+        vec3 Ls;       // Especular
+      };
+      uniform LightData Light;
+      
+      struct MaterialData {
+        vec3 Ka;       // Ambiente
+        vec3 Kd;       // Difusa
+        vec3 Ks;       // Especular
+        float alpha;   // Brillo
+      };
+      uniform MaterialData Material;
+      
+      uniform sampler2D myTexture;
+      uniform float     repetition;
+        
+      in  vec3 N, ec;
+      in  vec2 texCoords;
+      out vec4 fragmentColor;
+      
+      vec3 phong (vec3 N, vec3 L, vec3 V) {
+        
+        vec3  ambient  = Material.Ka * Light.La;
+        vec3  diffuse  = vec3(0.0);
+        vec3  specular = vec3(0.0);
+        
+        float NdotL    = dot (N,L);
+        
+        if (NdotL > 0.0) {
+          vec3  R       = reflect(-L, N);;
+          float RdotV_n = pow(max(0.0, dot(R,V)), Material.alpha);
+          
+          diffuse  = NdotL   * (Light.Ld * Material.Kd);
+          specular = RdotV_n * (Light.Ls * Material.Ks);
+        }
+        
+        return (ambient + diffuse + specular);
+        
+      }
+      
+      void main() {
+        
+        vec3 n = normalize(N);
+        vec3 L = normalize(Light.Position - ec);
+        vec3 V = normalize(-ec);
+        
+        fragmentColor = texture(myTexture, texCoords * repetition) * vec4(phong(n,L,V), 1.0) * 1.6;
+        
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div class="Menu2">
+      <ul class="list">
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/inicio_peque.png" class="list_img">
+            <a href="index.html" class="list_link">Inicio</a>
+          </div>
+        </li>
+        <li class="list_item">
+          <div class="list_button list_button--click">
+            <img src="imgs/bases_peque.png" class="list_img">
+            <a href="#" class="list_link">Fuente de Datos</a>
+          </div>
+          <ul class="list_show">
+            <li class="list_inside">
+              <a href="nuevafuente.html" class="list_link list_link--inside">Nueva Fuente</a>
+            </li>
+            <li class="list_inside">
+              <a href="editarfuente.html" class="list_link list_link--inside">Editar Fuente</a>
+            </li>
+          </ul>
+          
+        </li>
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/ajustes_peque.png" class="list_img">
+            <a href="ajustes.html" class="list_link">Ajustes</a>
+          </div>
+        </li>
+        <li class="list_item">
+          <div class="list_button">
+            <img src="imgs/salir_peque.png" class="list_img">
+            <a href="inicio.html" class="list_link">Salir</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="Menu">
+      <div class="form">
+        <input type="text" placeholder="Buscar panel" class="search_bar">
+        <button type="submit" class="search_button"><img src="svg/lupa.svg"></button>
+        <button type="button" class="user_boton" id="bt_usuario"><img src="imgs/imagen usuario pequeña_Capa de pintura 2 (pegado) Fusionadas.png"></button>
+      </div>
+    </div>
+    <div class="botones">
+      <button><img src="imgs/boton filtros.png" class="bt_filtros" id="bt_filtros"></button>
+      <h1>Nombre de Ejemplo</h1>
+      <button><img src="imgs/boton guardar.png" class="bt_izq"></button>
+      <button><img src="imgs/boton ajustes.png" class="bt_aj"></button>
+      <ul class="lista_ajustes_panel">
+          <img src="svg/cruz.svg" class="close">
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/global.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj" id="pop_indicadores">Marcador Global</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/panel.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Añadir Panel</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/pincel.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Editar Estilo</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/recargar.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Recargar Informe</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/etiqueta.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Etiquetas</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/dashboard.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Live Dashboard</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/guardar.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Guardar</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/guardar.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Guardar Como...</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/descargar.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Descargar PDF</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/descargar.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Descargar Imagen</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/alerta.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Establecer Alerta</a>
+              </div>
+          </li>
+          <li class="ajuste_panel">
+              <div class="item_ajuste">
+                  <img src="svg/compartir.svg" class="icono_lista">
+                  <a href="#" class="link_lista-aj">Compartir</a>
+              </div>
+          </li>
+      </ul>
+    </div>
+    <div class="chartCard2">
+      <div class="chartBox" id="backgroundColorChart">
+          <canvas id="myChart"></canvas>
+          <canvas id="grafhorizontal"></canvas>
+      </div>
+      <div class="chartBox">
+        <img src="imgs/horno.png" class="horno">
+        <button class="bt_modelos" id="open_model">Ver Modelo 3D</button>
+        <canvas id="grafbarras"></canvas>
+      </div>
+    </div>
+    <div class="contwebgl" id="contwebgl">
+      
+      <img src="svg/cruz.svg" class="close_model" id="close_model">
+      <canvas class="webglcanvas" id="webglcanvas" width="600" height="600"></canvas>
+      <!-- <h1>HOLA</h1> -->
+      <div class="webgl_info1" id="webgl_info">
+        <h3>Temperatura del horno: 750ºC</h3>
+        <h3>Eficiencia: 87%</h3>
+      </div>
+      <div class="webgl_info2" id="webgl_info2">
+        <h3>Temperatura de chimenea: 200ºC</h3>
+        <h3>Emisión gases: 16%</h3>
+      </div>
+      <button class="bt_webgl" id="show_webgl">Mostrar datos </button>
+      <button class="bt_webgl2" id="hide_webgl">Ocultar datos </button>
+    </div>
+
+    <div class="indicadores_cont" id="indicadores">
+      <div class="ventana_indicadores">
+          <h1>Indicadores</h1>
+          <div class="header_indicadores">
+              <button class="bt_ind" id="add_ind"><img src="svg/añadir.svg">Añadir indicador</button>
+              <h2>¡Añade un indicador!</h2> 
+              <button class="bt_ind"><img src="svg/pincel.svg">Editar estilos</button>
+          </div>
+          <div class="lista_indicadores_cont">
+              <h3>Condiciones definidas</h3>
+              <div class="lista_indicadores">
+                  <h4>No hay indicadores todavía</h4>
+              </div>
+              <button class="cerrar_ind" id="cerrar_ind">Cerrar</button> 
+          </div>
+      </div>
+  </div>
+  <div class="tipo_ind_cont"  id="tipo_indicadores">
+      <div class="ventana_indicadores">
+          <h1>Establecer tipo y estilo</h1>
+          <div class="estilo_indicadores">
+              <input type="text" placeholder="Selecciona tipo indicador" class="tipo_indicador">
+              <div class="estilo_ind_inside">
+                  <div class="item_estilo_ind">
+                      <h2>Color: </h2>
+                      <input type="color">
+                  </div>
+                  <div class="item_estilo_ind">
+                      <h2>Texto: </h2>
+                      <input type="text" placeholder="Nombre del indicador" class="nom_ind">
+                  </div>
+              </div>
+          </div>
+          <h1>Establecer condicion</h1>
+          <div class="estilo_indicadores">
+              <input type="text" placeholder="Selecciona un parámetro" class="tipo_indicador">
+              <h3>Reglas del indicador</h3>
+              <div class="reglas_indicadores_cont">
+                  <div class="reglas_ind">
+                      
+                  </div>
+                  <div class="botones_ind">
+                      <button class="anterior" id="anterior">Anterior</button> 
+                      <button class="cerrar_ind_2" id="cerrar_ind_2">Cerrar</button> 
+                      <button class="bt_ind_guardar" id="cerrar_ind_2"><img src="svg/guardar.svg">Guardar</button> 
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="nuevo_panel_cont" id="nuevo_panel_cont">
+      <div class="nuevo_panel">
+          <div class="nombre_panel">
+              <h3>Nombre del panel: </h3>
+              <input type="text">
+          </div>
+          <!-- ModoSQL -->
+          <div class="cont_sql" id="cont_sql">
+              <div class="cabeceraSQL" id="panel_sql">
+                  <h3>Consulta SQL: </h3>
+                  <button id="modo_asist">Modo asistido</button>
+              </div>
+              <div class="consulta_SQL">
+                  <div class="espresionSQL">
+                      <h4>Expresión SQL</h4>
+                      <input type="text" class="sql">
+                      <h4>Tabla origen</h4>
+                      <input type="text">
+                  </div>
+                  <div class="añadirTabla">
+                      <h4>Indicaciones</h4>
+                      <h6>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates, nostrum corporis? Qui error ipsam labore quos quasi harum eos ad! Facere est facilis cumque obcaecati reprehenderit, unde voluptas tenetur iusto.</h6>
+
+                      <h4>Añadir Gráfico</h4>
+                      <h6>Tipo: </h6>
+                      <input type="text" placeholder="Ninguno">
+                  </div>
+              </div>
+
+          </div>
+          <!-- Modo Asistido -->
+          <div class="cont_asist" id="cont_asist">
+              <div class="AsistidoSQL" id="panel_asist">
+                  <h3>Consulta SQL: </h3>
+                  <button id="modo_sql">Modo SQL</button>
+              </div>
+              <!-- <div class="asistido">
+                  <div class="asistido_1">
+                      <h3>Entidades</h3>
+                      <input type="text">
+                      <button>Ejemplo</button>
+                  </div>
+                  <div class="asistido_2">
+                      <h3>Atributos</h3>
+                      <input type="text">
+                  </div>
+                  <div class="asistido_3">
+                      <h3>Mostrar los siguientes atributos:</h3>
+                      <h4>Arrastre aqui los atributos que quiera ver en su panel</h4>
+                      <h3>Filtrar los resultados:</h3>
+                      <h4>Arrastre aqui los atributos que quiera filtrar</h4>
+                  </div>
+              </div> -->
+
+          </div>
+          
+          <div class="botones_panel">
+              <button class="cerrar_ind_2" id="cerrar_panel">Cerrar</button> 
+              <button class="bt_panel_guardar" id="cerrar_ind_2"><img src="svg/guardar.svg">Guardar</button> 
+          </div>
+      </div>
+  </div>
+
+  <div class="cont_filtros" id="cont_filtros">
+      <div class="filtros">
+          <h1>Filtros del Informe</h1>
+          <div class="aplica">
+              <h3>Aplicar a todos los paneles: </h5>
+              <button>Sí</button>
+              <button>No</button>
+          </div>
+          <div class="panel_aplica">
+              <h3>Paneles a los que se aplica este filtro:</h5>
+              <button>Panel 1</button>
+              <button>Panel 2</button>
+              <button>Panel 3</button>
+          </div>
+          <div class="panel_aplica">
+              <h3>Filtrar por</h3>
+              <input type="text" placeholder="Entidades">
+              <input type="text" placeholder="Atributos">
+          </div>
+          <button class="bt_guardar_filtro" id="bt_guadar_filtro">Guardar</button>
+      </div>
+      
+  </div>
+
+  <div class="cont_estilo" id="cont_edit">
+      <div class="estilo">
+          <h1>EDITAR ESTILOS DEL INFORME</h1>
+          <div class="cabecera_estilo">
+              <div class="elemento_cabecera_estilo">
+                  <h3>Color del fondo</h3>
+                  <input type="color">
+              </div>
+              <div class="elemento_cabecera_estilo">
+                  <h3>Color del panel</h3>
+                  <input type="color">
+              </div>
+              <div class="elemento_cabecera_estilo">
+                  <h3>Paneles transparentes</h3>
+                  <input type="checkbox">
+              </div>
+          </div>
+          <div class="opciones_estilo_cont">
+              <div class="opcion_estilo">
+                  <h3>Título del informe</h3>
+                  <h4>Tipo de fuente</h4>
+                  <input type="text" placeholder="Roboto">
+                  <h4>Tamaño de fuente</h4>
+                  <input type="range">
+                  <h4>Color de la fuente</h4>
+                  <input type="color">
+                  <h4>Alineación</h4>
+                  <div class="bt_radio">
+                      <div class="par_radio">
+                          <input type="radio">Izquierda
+                      </div>
+                      <div class="par_radio">
+                          <input type="radio">Centro
+                      </div>
+                      <div class="par_radio">
+                          <input type="radio">Derecha
+                      </div>
+                  </div>
+              </div>
+              <div class="opcion_estilo">
+                  <h3>Filtros</h3>
+                  <h4>Tipo de fuente</h4>
+                  <input type="text" placeholder="Roboto">
+                  <h4>Tamaño de fuente</h4>
+                  <input type="range">
+                  <h4>Color de la fuente</h4>
+                  <input type="color">
+              </div>
+              <div class="opcion_estilo">
+                  <h3>Título del panel</h3>
+                  <h4>Tipo de fuente</h4>
+                  <input type="text" placeholder="Roboto">
+                  <h4>Tamaño de fuente</h4>
+                  <input type="range">
+                  <h4>Color de la fuente</h4>
+                  <input type="color">
+                  <h4>Alineación</h4>
+                  <div class="bt_radio">
+                      <div class="par_radio">
+                          <input type="radio">Izquierda
+                      </div>
+                      <div class="par_radio">
+                          <input type="radio">Centro
+                      </div>
+                      <div class="par_radio">
+                          <input type="radio">Derecha
+                      </div>
+                  </div>
+              </div>
+              <div class="opcion_estilo">
+                  <h3>Contenidos del panel</h3>
+                  <h4>Tipo de fuente</h4>
+                  <input type="text" placeholder="Roboto">
+                  <h4>Tamaño de fuente</h4>
+                  <input type="range">
+                  <h4>Color de la fuente</h4>
+                  <input type="color">
+              </div>
+              <div class="opcion_estilo">
+                  <h3>Previsualización</h3>
+                  <img src="imgs/previ.png">
+              </div>
+          </div>
+          <div class="botones_estilo">
+              <div class="aux">
+                  <button><img src="svg/recargar.svg">Volver a los valores por defecto</button>
+                  <button><img src="svg/check.svg">Aceptar</button>
+                  <button id="cancelar_estilo"><img src="svg/cruz.svg">Cancelar</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <script>
+      const usuario = document.getElementById('bt_usuario')
+
+      usuario.addEventListener('click', ()=>{
+        location.href = "usuario.html";
+      })
+    </script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="webgl/gl-matrix-min.js"></script>
+    <script src="webgl/materiales.js"></script>
+    <script src="webgl/primitivasGNT.js"></script>
+    <script src="webgl/EJERCICIO17.js"></script>
+    <script src ="diagramas copy.js"></script>
+    <!-- <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@<version>/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@<v0.149.0>/examples/jsm/"
+        }
+      }
+    </script> -->
+  </body>
+</html>
